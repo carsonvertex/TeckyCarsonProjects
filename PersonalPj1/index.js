@@ -52,15 +52,15 @@ function setup() {
 
 
     //Select color
-    mySelect = createSelect();
-    mySelect.position();
-    mySelect.parent(document.querySelector("#colorselector"))
+    // mySelect = createSelect();
+    // mySelect.position();
+    // mySelect.parent(document.querySelector("#colorselector"))
 
-    // Add color options.
-    mySelect.option('red');
-    mySelect.option('green');
-    mySelect.option('blue');
-    mySelect.selected('red');
+    // // Add color options.
+    // mySelect.option('red');
+    // mySelect.option('green');
+    // mySelect.option('blue');
+    // mySelect.selected('red');
 }
 
 
@@ -72,10 +72,14 @@ function tf() {
         console.log("Pause");
         noLoop();
         isStopped = true;
+        document.getElementById("Status").innerHTML=("Game Paused")
+        
     } else {
         console.log("Resume")
         loop();
         isStopped = false;
+        document.getElementById("Status").innerHTML=("Game Resumed")
+       
     }
 }
 
@@ -85,14 +89,39 @@ function mode() {
 
     if (drawmode === true) {
         console.log("Pattern Mode");
+        document.getElementById("DraworPattern").innerHTML=("Pattern Mode")
+       
 
         drawmode = false;
     } else {
         console.log("Draw Mode")
         drawmode = true;
+        document.getElementById("DraworPattern").innerHTML=("Pattern Mode")
     }
 }
 
+//Select Color
+SelectedColor = "red";
+document.getElementById('Red').addEventListener("click", () => {
+    document.getElementById('ColorButton').innerHTML = "Red"
+    SelectedColor = "red";
+    console.log("Red");
+    
+    
+});
+document.getElementById('Blue').addEventListener("click", () => {
+    document.getElementById('ColorButton').innerHTML = "Blue"
+    SelectedColor = "blue";
+    console.log("Blue");
+    
+    
+});document.getElementById('Green').addEventListener("click", () => {
+    document.getElementById('ColorButton').innerHTML = "Green"
+    SelectedColor = "green";
+    console.log("Red");
+    
+    
+});
 
 
 function draw() {
@@ -105,7 +134,7 @@ function draw() {
     // ctx.canvas.height = window.innerHeight;
 
 
-    let c = mySelect.selected();
+    let c = SelectedColor;
 
 
 
@@ -264,6 +293,7 @@ function mouseDragged() {
     }
     noLoop();
     console.log("Pause");
+    document.getElementById("Status").innerHTML=("Game Paused")
     isStopped = true;
     const x = Math.floor(mouseX / unitLength);
 
@@ -347,15 +377,20 @@ O...O.O...OOOOO.OOOOO...O.O...O
 ...O.......................O...`;
 SelectedPattern = gliderPattern;
 document.getElementById('Glider').addEventListener("click", () => {
+    document.getElementById('patternbutton').innerHTML = "Glider"
+
     console.log("Glider");
     SelectedPattern = gliderPattern;
+    
 });
 document.getElementById('GreyCounter').addEventListener("click", () => {
     console.log("Greycounter")
+    document.getElementById('patternbutton').innerHTML = "Grey Counter"
     SelectedPattern = GreyCounter;
 });
 document.getElementById('Spider').addEventListener("click", () => {
     console.log("Spider")
+    document.getElementById('patternbutton').innerHTML = "Spider"
     SelectedPattern = Spider;
 });
 
@@ -418,3 +453,16 @@ function mouseReleased() {
 //   sleepTimeCoefX: 0.0025,
 //   sleepTimeCoefY: 0.0025
 // })
+
+function openPopup() {
+    var popup = document.getElementById("popup");
+    popup.classList.add("show");
+  }
+  
+  function closePopup() {
+    var popup = document.getElementById("popup");
+    popup.classList.remove("show");
+  }
+  
+  var openButton = document.getElementById("openButton");
+  openButton.addEventListener("click", openPopup);
