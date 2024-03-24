@@ -28,6 +28,7 @@ function setup() {
     }
     init(); // Set the initial values of the currentBoard and nextBoard
 
+
     // Create SLider
 
     slider = createSlider(1, 120, 30);
@@ -40,6 +41,15 @@ function setup() {
     button.parent(document.querySelector("#startstop"));
     button.position();
     button.mouseClicked(tf);
+
+    //patternmode-button
+    let pbutton = createButton('Draw Mode / Pattern Mode');
+    pbutton.parent(document.querySelector("#MODE"));
+    pbutton.position();
+    pbutton.mouseClicked(mode);
+
+
+
 
     //Select color
     mySelect = createSelect();
@@ -55,24 +65,38 @@ function setup() {
 
 
 //start pause
-let isStopped = true;
+let isStopped = false;
 function tf() {
 
-    if (isStopped === true) {
+    if (isStopped !== true) {
         console.log("Pause");
         noLoop();
-        isStopped = false;
+        isStopped = true;
     } else {
         console.log("Resume")
         loop();
-        isStopped = true;
+        isStopped = false;
+    }
+}
+
+//pattern mode button
+let drawmode = true;
+function mode() {
+
+    if (drawmode === true) {
+        console.log("Pattern Mode");
+
+        drawmode = false;
+    } else {
+        console.log("Draw Mode")
+        drawmode = true;
     }
 }
 
 
 
 function draw() {
-draw2();
+    draw2();
 
     background('255');
 
@@ -104,6 +128,8 @@ draw2();
         }
     }
 
+
+    // Reset Rules
     resetRules();
 
 
@@ -118,7 +144,24 @@ draw2();
             console.log('Reset all the rules');
         });
     }
+    // Clear board
 
+    // patterns();
+    cleanboard();
+    function cleanboard() {
+        document.getElementById('clean').addEventListener("click", () => {
+            for (let i = 0; i < columns; i++) {
+                for (let j = 0; j < rows; j++) {
+                    // let someVariables = <condictions> : <when_true> : <when_false>;
+                    // currentBoard[i][j] = random() > 0.8 ? 1 : 0; // one line if
+
+                    currentBoard[i][j] = 0; // one line if
+                    nextBoard[i][j] = 0;
+                    loop();
+                }
+            }
+        });
+    }
 
 
     //Slidervalue to FPS
@@ -219,12 +262,15 @@ function mouseDragged() {
     if (mouseX > unitLength * columns || mouseY > unitLength * rows) {
         return;
     }
-
+    noLoop();
+    console.log("Pause");
+    isStopped = true;
     const x = Math.floor(mouseX / unitLength);
 
     const y = Math.floor(mouseY / unitLength);
     console.log(mouseX, mouseY, x, y)
     currentBoard[x][y] = 1;
+    fill("purple")
     // fill(c);
     // if (c = "red") {
     //     fill("red");
@@ -237,7 +283,21 @@ function mouseDragged() {
     stroke(strokeColor);
     rect(x * unitLength, y * unitLength, unitLength, unitLength);
 }
-//random init
+
+// initial board pattern
+function init() {
+    for (let i = 0; i < columns; i++) {
+        for (let j = 0; j < rows; j++) {
+            // let someVariables = <condictions> : <when_true> : <when_false>;
+            // currentBoard[i][j] = random() > 0.8 ? 1 : 0; // one line if
+
+            currentBoard[i][j] = 0; // one line if
+            nextBoard[i][j] = 0;
+            loop();
+        }
+    }
+}
+//random spawn
 
 function randomSpawnLife() {
     for (let i = 0; i < columns; i++) {
@@ -249,24 +309,14 @@ function randomSpawnLife() {
         }
     }
 }
-function init() {
-    randomSpawnLife()
-    // for (let i = 0; i < columns; i++) {
-    //     for (let j = 0; j < rows; j++) {
-    //         // let someVariables = <condictions> : <when_true> : <when_false>;
-    //         // currentBoard[i][j] = random() > 0.8 ? 1 : 0; // one line if
 
-    //         currentBoard[i][j] = 0; // one line if
-    //         nextBoard[i][j] = 0;
-    //     }
-    // }
+randominit();
+function randominit() {
+    document.getElementById('randominit').addEventListener("click", () => {
+        randomSpawnLife()
 
 
-    // currentBoard[0][3] = 1
-    // currentBoard[1][3] = 1
-    // currentBoard[2][3] = 1
-    // currentBoard[2][2] = 1
-    // currentBoard[1][1] = 1
+    })
 
 }
 
@@ -276,8 +326,42 @@ const gliderPattern =
 ..O
 OOO`;
 
+const GreyCounter =
+    `......O......
+.....O.O.....
+....O.O.O....
+.O..O...O..O.
+O.O.O...O.O.O
+.O..O...O..O.
+....O.O.O....
+.....O.O.....
+......O......`;
+
+const Spider =
+    `......O...OOO.....OOO...O......
+...OO.OOOOO.OO...OO.OOOOO.OO...
+.O.OO.O.....O.O.O.O.....O.OO.O.
+O...O.O...OOOOO.OOOOO...O.O...O
+....OOO.....OO...OO.....OOO....
+.O..O.OOO.............OOO.O..O.
+...O.......................O...`;
+SelectedPattern = gliderPattern;
+document.getElementById('Glider').addEventListener("click", () => {
+    console.log("Glider");
+    SelectedPattern = gliderPattern;
+});
+document.getElementById('GreyCounter').addEventListener("click", () => {
+    console.log("Greycounter")
+    SelectedPattern = GreyCounter;
+});
+document.getElementById('Spider').addEventListener("click", () => {
+    console.log("Spider")
+    SelectedPattern = Spider;
+});
+
 function insertPattern(x, y) {
-    let parsedArray = gliderPattern.split('\n')
+
+    let parsedArray = SelectedPattern.split('\n')
     console.log(parsedArray)
     for (let j in parsedArray) {
         console.log(j, "th row", parsedArray[j])
@@ -296,18 +380,41 @@ function insertPattern(x, y) {
 }
 
 function mousePressed() {
+
     if (mouseX > unitLength * columns || mouseY > unitLength * rows) {
         return;
     }
     const x = Math.floor(mouseX / unitLength);
     const y = Math.floor(mouseY / unitLength);
-    insertPattern(x, y)
+    if (!drawmode)
+        insertPattern(x, y)
 }
 
 
 function mouseReleased() {
+    if (isStopped === false)
+        loop();
     if (mouseX > unitLength * columns || mouseY > unitLength * rows) {
         return;
     }
 }
 
+
+
+//Cursor
+
+// import { neonCursor } from 'https://unpkg.com/threejs-toys@0.0.8/build/threejs-toys.module.cdn.min.js'
+
+// neonCursor({
+//   el: document.getElementById('app'),
+//   shaderPoints: 16,
+//   curvePoints: 80,
+//   curveLerp: 0.5,
+//   radius1: 5,
+//   radius2: 30,
+//   velocityTreshold: 10,
+//   sleepRadiusX: 100,
+//   sleepRadiusY: 100,
+//   sleepTimeCoefX: 0.0025,
+//   sleepTimeCoefY: 0.0025
+// })
