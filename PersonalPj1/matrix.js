@@ -23,13 +23,33 @@ for( let x = 0; x < mcolumns; x++ ) {
 //     canvas.width = window.innerWidth;
 // canvas.height = window.Height;
 // }
+context.fillStyle = '#0F0';
+
+
+
+BackgroundColor = "#0F0";
+document.getElementById('Red').addEventListener("click", () => {
+    context.fillStyle = '#f70d1a';
+    BackgroundColor = "#f70d1a";
+    console.log("Red");
+});
+document.getElementById('Green').addEventListener("click", () => {
+    context.fillStyle = '#0F0';
+    BackgroundColor = "#0F0";
+    console.log("Green");
+});
+document.getElementById('Blue').addEventListener("click", () => {
+    context.fillStyle = 'cyan';
+    BackgroundColor = "cyan";
+    console.log("blue");
+});
 
 const draw2 = () => {
     context.fillStyle = 'rgba(0, 0, 0, 0.05)';
     context.fillRect(0, 0, canvas.width, canvas.height);
     
 
-    context.fillStyle = '#0F0';
+    context.fillStyle = BackgroundColor;
     context.font = fontSize + 'px monospace';
 
     for(let i = 0; i < rainDrops.length; i++)

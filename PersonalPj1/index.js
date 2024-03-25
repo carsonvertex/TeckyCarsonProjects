@@ -96,7 +96,7 @@ function mode() {
     } else {
         console.log("Draw Mode")
         drawmode = true;
-        document.getElementById("DraworPattern").innerHTML=("Pattern Mode")
+        document.getElementById("DraworPattern").innerHTML=("Draw Mode")
     }
 }
 
@@ -206,18 +206,20 @@ function draw() {
 
 
 
-//resize
-// function resizeCanvas() {
-//     //resize canvas
-//     if (window.innerHeight >= (9 * window.innerWidth / 16)) {
-//         canvas.width = window.innerWidth;
-//         canvas.height = Math.floor(9 * canvas.width / 16);
+// resize
+// function windowResized() {
+//     resizeCanvas(windowWidth - 80, windowHeight - 100)
+//     /*Calculate the number of columns and rows */
+//     columns = floor(width / unitLength);
+//     rows = floor(height / unitLength);
+
+//     /*Making both currentBoard and nextBoard 2-dimensional matrix that has (columns * rows) boxes. */
+//     for (let i = 0; i < columns; i++) {
+//         if (!currentBoard[i]) {
+//             currentBoard[i] = [];
+//             nextBoard[i] = [];
+//         }
 //     }
-//     else {
-//         canvas.height = window.innerHeight;
-//         canvas.width = Math.floor(16 * canvas.height / 9);
-//     }
-//     ctx = canvas.getContext("2d");
 // }
 
 //Set Rules

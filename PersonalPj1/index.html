@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <div id="popup" class="popup" >
+  <div id="popup" class="popup" style="padding: 20px;" >
     <span class="close" onclick="closePopup()">&times;</span>
     <div style="display: flex;justify-content: center;"><img src="img/Icon.png" style="width: 200px;"></div>
     
@@ -33,7 +33,7 @@
           
         </div>
         <div class="col-8 ">
-          <p>Carson Lee </p>
+          <p>Carson Lee, Hin </p>
           <p>1999</p>
           <p>The University of Hong Kong </p>
           <p>BSc Information Management,2022 </p>
@@ -83,7 +83,7 @@
   <div class="container-fluid" style="border: 2px solid;">
     <div class="row">
       <!-- StartStop -->
-      <div class="col-3" style="display: flex;justify-content: center;">
+      <div class="col-3 " style="display: flex;justify-content: center;">
 
         <div id="startstop" style="display: flex;justify-content: center;"></div>
 
@@ -119,7 +119,7 @@
             aria-expanded="true">
             Patterns
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <ul class="dropdown-menu" >
             <li><a class="dropdown-item" id="Glider" href="#">Glider</a></li>
             <li><a class="dropdown-item" id="GreyCounter" href="#">Grey Counter</a></li>
             <li><a class="dropdown-item" href="#" id="Spider">Spider</a></li>
@@ -137,19 +137,21 @@
   <div class="container-fluid" id="rules" style="border: 2px solid;">
     <div class="row" style="margin: 10px;">
       <div class="col-4" style="display: flex;justify-content: center;">
-        <label for="lone" style="display: flex; align-items:center;">Rule for loneliness: </label>
+        
+        <div for="lone" style="display: flex; align-items:center;">Rule for loneliness: </div>
         <input type="number" id="loneInput" value="2" style="width: 50px;" min="0" max="8">
         <button onclick="updateLone()">Update Lone</button>
+
       </div>
 
       <div class="col-4" style="display: flex;justify-content: center;">
-        <label for="over" style="display: flex; align-items:center;">Rule for over population: </label>
+        <div for="over" style="display: flex; align-items:center;">Rule for over population: </div>
         <input type="number" id="overInput" value="3" style="width: 50px;" min="0" max="8">
         <button onclick="updateOver()">Update Over</button>
       </div>
 
       <div class="col-4" style="display: flex;justify-content: center;">
-        <label for="rePro" style="display: flex; align-items:center;">Rule for reproduction: </label>
+        <div for="rePro" style="display: flex; align-items:center;">Rule for reproduction: </div>
         <input type="number" id="reProductinput" value="3" style="width: 50px;" min="0" max="8">
         <button onclick="updatereProduct()">Update reProduct</button>
       </div>
