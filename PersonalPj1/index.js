@@ -197,7 +197,7 @@ function draw() {
     let fpsValue = slider.value();
     frameRate(fpsValue);
 
-    fill(0);
+    fill("#0F0");
     textSize(20);
 
     text('FPS: ' + fpsValue, 10, 40);
@@ -207,20 +207,40 @@ function draw() {
 
 
 // resize
-// function windowResized() {
-//     resizeCanvas(windowWidth - 80, windowHeight - 100)
-//     /*Calculate the number of columns and rows */
-//     columns = floor(width / unitLength);
-//     rows = floor(height / unitLength);
+function windowResized() {
+    resizeCanvas(windowWidth - 80, windowHeight - 100)
+    // /*Calculate the number of columns and rows */
+    // columns = floor(width / unitLength);
+    // rows = floor(height / unitLength);
 
-//     /*Making both currentBoard and nextBoard 2-dimensional matrix that has (columns * rows) boxes. */
-//     for (let i = 0; i < columns; i++) {
-//         if (!currentBoard[i]) {
-//             currentBoard[i] = [];
-//             nextBoard[i] = [];
-//         }
-//     }
-// }
+    // /*Making both currentBoard and nextBoard 2-dimensional matrix that has (columns * rows) boxes. */
+    // for (let i = 0; i < columns; i++) {
+    //     if (!currentBoard[i]) {
+    //         currentBoard[i] = [];
+    //         nextBoard[i] = [];
+    //     }
+    // }
+
+    /* Set the canvas to be under the element #canvas*/
+    W = floor(windowWidth);
+    H = floor(windowHeight);
+    unitLength = (windowWidth - 20) / 70
+    const canvas = createCanvas(W - 20, unitLength * 20);
+    canvas.parent(document.querySelector("#canvas"));
+
+    /*Calculate the number of columns and rows */
+    columns = floor(width / unitLength);
+    rows = floor(height / unitLength);
+
+    /*Making both currentBoard and nextBoard 2-dimensional matrix that has (columns * rows) boxes. */
+    currentBoard = [];
+    nextBoard = [];
+    for (let i = 0; i < columns; i++) {
+        currentBoard[i] = [];
+        nextBoard[i] = [];
+    }
+    init();
+}
 
 //Set Rules
 let lone = 2;

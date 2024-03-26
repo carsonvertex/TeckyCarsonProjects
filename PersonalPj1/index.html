@@ -100,9 +100,9 @@
             Red
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" id="Red" href="#">Red</a></li>
-            <li><a class="dropdown-item" id="Blue" href="#">Blue</a></li>
-            <li><a class="dropdown-item" href="#" id="Green">Green</a></li>
+            <li><a class="dropdown-items" id="Red" href="#">Red</a></li>
+            <li><a class="dropdown-items" id="Blue" href="#">Blue</a></li>
+            <li><a class="dropdown-items"  id="Green">Green</a></li>
           </ul>
         </div>
       </div>
@@ -112,7 +112,8 @@
       </div>
       <!-- pattern -->
       <div class="col-3" style="display: flex;justify-content: center;">
-        <div class="dropdown" id="patternselect">
+        <!-- <div id="MODE" style="display: flex;justify-content: center;"></div> -->
+        <!-- <div class="dropdown" id="patternselect" > -->
 
 
           <button class=" dropdown-toggle" type="button" id="patternbutton" data-bs-toggle="dropdown"
@@ -120,9 +121,9 @@
             Patterns
           </button>
           <ul class="dropdown-menu" >
-            <li><a class="dropdown-item" id="Glider" href="#">Glider</a></li>
-            <li><a class="dropdown-item" id="GreyCounter" href="#">Grey Counter</a></li>
-            <li><a class="dropdown-item" href="#" id="Spider">Spider</a></li>
+            <li><a class="dropdown-items" id="Glider" href="#">Glider</a></li>
+            <li><a class="dropdown-items" id="GreyCounter" href="#">Grey Counter</a></li>
+            <li><a class="dropdown-items" href="#" id="Spider">Spider</a></li>
           </ul>
         </div>
       </div>
@@ -136,7 +137,7 @@
   <!-- Rules -->
   <div class="container-fluid" id="rules" style="border: 2px solid;">
     <div class="row" style="margin: 10px;">
-      <div class="col-4" style="display: flex;justify-content: center;">
+      <div class="col-lg-4 col-sm-12" style="display: flex;justify-content:center;margin-bottom: 10px">
         
         <div for="lone" style="display: flex; align-items:center;">Rule for loneliness: </div>
         <input type="number" id="loneInput" value="2" style="width: 50px;" min="0" max="8">
@@ -144,30 +145,34 @@
 
       </div>
 
-      <div class="col-4" style="display: flex;justify-content: center;">
+      <div class="col-lg-4 col-sm-12" style="display: flex;justify-content: center;margin-bottom: 10px">
         <div for="over" style="display: flex; align-items:center;">Rule for over population: </div>
         <input type="number" id="overInput" value="3" style="width: 50px;" min="0" max="8">
         <button onclick="updateOver()">Update Over</button>
       </div>
 
-      <div class="col-4" style="display: flex;justify-content: center;">
+      <div class="col-lg-4 col-sm-12" style="display: flex;justify-content: center;margin-bottom: 10px">
         <div for="rePro" style="display: flex; align-items:center;">Rule for reproduction: </div>
         <input type="number" id="reProductinput" value="3" style="width: 50px;" min="0" max="8">
         <button onclick="updatereProduct()">Update reProduct</button>
       </div>
     </div>
 
+    
+  </div>
+
+  <div class="container-fluid" id="rules" style="border: 2px solid;">
     <div class="row" style="margin: 0px;display: flex;justify-content: space-evenly;">
-      <div class="col-4" style="display: flex;justify-content: center;">
-        <button id="reset">Reset Rules</button>
+      <div class="col-lg-4 col-sm-12" style="display: flex;justify-content: center;">
+        <button id="reset"style="margin: 10px;">Reset Rules</button>
       </div>
 
-      <div class="col-4" style="display: flex;justify-content: center;">
-        <button id="clean">Clear Board</button>
+      <div class="col-lg-4 col-sm-12" style="display: flex;justify-content: center;">
+        <button id="clean"style="margin: 10px;">Clear Board</button>
       </div>
 
-      <div class="col-4" style="display: flex;justify-content: center;">
-        <button id="randominit">Random Init</button>
+      <div class="col-lg-4 col-sm-12" style="display: flex;justify-content: center;">
+        <button id="randominit" style="margin: 10px;">Random Init</button>
       </div>
     </div>
   </div>

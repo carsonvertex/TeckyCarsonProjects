@@ -3,6 +3,9 @@
 #canvas {
 
    opacity: 0.8;
+   position: relative;
+   display: flex;
+   justify-content: center;
 
 }
 
@@ -115,3 +118,29 @@ text {
   .close:hover {
     color: #000;
   }
+
+  /* Dropdown */
+  .dropdown-menu.show{
+    background-color: rgba(0,0,0,0.8);
+    color: #0F0;
+    border: 2px solid green;
+  }
+
+  .dropdown-menu{
+    color: green;
+  }
+
+  .dropdown-items {
+    display: block;
+    width: 100%;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    clear: both;
+    font-weight: 400;
+    color: #198754;
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    border-radius: var(--bs-dropdown-item-border-radius, 0);
+}
